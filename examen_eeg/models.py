@@ -15,5 +15,5 @@ class ExamenEEG(models.Model):
     
 
     def __str__(self):
-         return f'Fecha: {self.fecha_analisis} - Anotaciones: {self.anotaciones}'
+         return f'Fecha: {self.fecha_analisis} - Cedula Paciente: {self.paciente.cedula}'
         
