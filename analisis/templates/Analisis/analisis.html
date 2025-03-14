@@ -26,7 +26,7 @@
                     <table class="table table-hover">
                         <thead>
                         <tr style="color:#0E2EB0">
-                            <th font color="red">Analisis</th>
+                            <th font color="red">Examen Analizado</th>
                             <th>Paciente examinado</th>
                             <th>Descripcion</th>
                             <th>Deteccion Anomalias</th>
@@ -38,8 +38,8 @@
 
                         {% for analisis in analisis_list %}
                         <tr>
-                            <td>{{ analisis.id }}</td>
-                            <td>{{ analisis.examen.paciente.nombre }}</td>
+                            <td>{{ analisis.examen_eeg.id }}</td>
+                            <td>{{ analisis.examen_eeg.paciente.nombre }}</td>
                             <td>{{ analisis.descripcion }}</td>
                             <td>{{ analisis.deteccion_anomalias}}</td>
                             <td>{{ analisis.fecha_analisis }}</td>
