@@ -55,9 +55,9 @@ def create_analisis(form):
         
         descripcion = (
        
-        f"- Duración: {resultado["duracion"]} segundos\n"
+        f"- Duración: {resultado['duracion']} segundos\n"
         f"- Canales analizados: {canales_str}\n"
-        f"- Frecuencia muestreo: {resultado["frecuencia_muestreo"]}"
+        f"- Frecuencia muestreo: {resultado['frecuencia_muestreo']}"
             )
         
         fecha = form.cleaned_data.get('fecha_analisis')
