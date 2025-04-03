@@ -5,10 +5,19 @@ from django.urls import reverse
 from google.cloud import storage
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
-from examen_eeg.logic.logic_examen_eeg import create_examenEEG
+from examen_eeg.logic.logic_examen_eeg import create_examenEEG, get_examenesEEG
 from examen_eeg.forms import ExamenEEGForm
 
 BUCKET_NAME = "epilepsia2-bucket"  # Nombre del bucket en GCP
+
+
+def examenes_list(request):
+    examenes = get_examenesEEG()
+    context = {
+        'examenes_list': examenes
+    }
+    return render(request, 'ExamenEEG/examenesEEG.html', context)
+
 
 def upload_to_gcp(file):
     """Sube un archivo a Cloud Storage y retorna la URL pública."""
