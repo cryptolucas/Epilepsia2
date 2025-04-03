@@ -17,3 +17,5 @@ class ExamenEEGForm(forms.ModelForm):
             'fecha_analisis': 'Fecha_analisis',
             'anotaciones': 'Anotaciones'
         }
+        
+    archivo = forms.FileField(required=True)  # Campo de archivo obligatorio
