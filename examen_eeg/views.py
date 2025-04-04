@@ -32,17 +32,20 @@ def upload_to_gcp(file):
 
 def examenEEG_create(request):
     if request.method == 'POST':
-        form = ExamenEEGForm(request.POST, request.FILES)
+        form = ExamenEEGForm(request.POST, request.FILES)  # Se debe incluir request.FILES
         if form.is_valid():
-            archivo = request.FILES['archivo']
-            public_url = upload_to_gcp(archivo)  # Subir archivo a GCP y obtener URL
+            archivo = request.FILES.get('archivo')  # Obtener el archivo subido
+            if archivo:
+                public_url = upload_to_gcp(archivo)  # Subir a GCP y obtener la URL
+                
+                examen = form.save(commit=False)
+                examen.archivo = public_url  # Guardar la URL en la base de datos
+                examen.save()
 
-            examen = form.save(commit=False)
-            examen.archivo = public_url  # Guardar la URL del archivo en el modelo
-            examen.save()
-
-            messages.success(request, 'Examen EEG creado exitosamente')
-            return HttpResponseRedirect(reverse('ExamenEEGCreate'))
+                messages.success(request, 'Examen EEG creado exitosamente')
+                return HttpResponseRedirect(reverse('ExamenEEGCreate'))
+            else:
+                messages.error(request, "No se ha subido ningún archivo.")
         else:
             print(form.errors)
     else:
