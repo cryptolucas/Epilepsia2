@@ -83,8 +83,8 @@ DATABASES = {
         'NAME': 'epilepsiabd2',
         'USER': 'acer',
         'PASSWORD': 'lucas2003',
-        'HOST': 'localhost',
-        'PORT': '5432'
+        'HOST': '10.128.0.2',
+        'PORT': ''
     }
 }
 
