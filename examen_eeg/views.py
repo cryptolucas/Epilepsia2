@@ -23,7 +23,7 @@ def upload_to_gcp(file):
     """Sube un archivo a Cloud Storage y retorna la URL pública."""
     storage_client = storage.Client()
     bucket = storage_client.bucket(BUCKET_NAME)
-    blob = bucket.blob({file.name})
+    blob = bucket.blob(file.name)
 
     blob.upload_from_file(file, content_type=file.content_type)
     blob.make_public()  # Hace que el archivo sea accesible públicamente
