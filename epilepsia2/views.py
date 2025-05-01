@@ -5,5 +5,4 @@ def index(request):
     return render(request, 'index.html')
 
 def healthCheck(request):
-    print(dir(request))
     return HttpResponse('ok')
