@@ -5,7 +5,7 @@ def get_pacientes():
     return (queryset)
 
 def get_paciente_por_cedula(cedula):
-    paciente = list(Paciente.objects.raw("SELECT * FROM pacientes WHERE cedula = %s", [cedula]))
+    paciente = list(Paciente.objects.raw("SELECT * FROM epilepsia2_paciente WHERE cedula = %s", [cedula]))
     if paciente:
         return paciente[0]
     else:
