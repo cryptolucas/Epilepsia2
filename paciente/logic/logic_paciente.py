@@ -5,8 +5,11 @@ def get_pacientes():
     return (queryset)
 
 def get_paciente_por_cedula(cedula):
-    paciente = Paciente.objects.raw("SELECT * FROM pacientes WHERE cedula=%s" % cedula)[0]
-    return (paciente)
+    paciente = list(Paciente.objects.raw("SELECT * FROM pacientes WHERE cedula = %s", [cedula]))
+    if paciente:
+        return paciente[0]
+    else:
+        return None  # Manejar el caso en que no se encuentre
 
 def create_paciente(form):
     paciente = form.save()
