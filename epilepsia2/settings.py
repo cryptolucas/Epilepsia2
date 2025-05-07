@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'analisis',
     'examen_eeg',
-    'paciente'
+    'paciente',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +132,26 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LOGIN_URL = "/login/auth0"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "https://dev-zuelgwafhol5iu51.us.auth0.com/v2/logout?returnTo=http%3A%2F%2F34.144.242.113:8080"
+
+SOCIAL_AUTH_TRAILING_SLASH = False  # Remove end slash from routes
+SOCIAL_AUTH_AUTH0_DOMAIN = 'dev-zuelgwafhol5iu51.us.auth0.com'
+SOCIAL_AUTH_AUTH0_KEY = 'dt72pBAIain4xKfzXBsuTLxG7lezy3Mt'
+SOCIAL_AUTH_AUTH0_SECRET = '9bx2wEdGJtDnYHSD7oWp6uSuqD81GlRYHk3mMHv9mrh053ClGm-qdSAIa2xkYmwE'
+
+SOCIAL_AUTH_AUTH0_SCOPE = [
+    'openid',
+    'profile',
+    'email',
+    'role',
+]
+
+AUTHENTICATION_BACKENDS = {
+    'monitoring.auth0backend.Auth0',
+    'django.contrib.auth.backends.ModelBackend',
+}
+

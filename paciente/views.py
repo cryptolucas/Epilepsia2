@@ -4,16 +4,21 @@ from paciente.forms import PacienteForm
 from paciente.logic.logic_paciente import create_paciente, get_pacientes
 
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+from epilepsia2.auth0backend import getRole
 
-
+@login_required
 def pacientes_list(request):
-    pacientes = get_pacientes()
-    context = {
-        'pacientes_list': pacientes
-    }
-    return render(request, 'Paciente/pacientes.html', context)
+    role = getRole(request)
+    if role == "medico" or role == "tecnico" or role == "enfermero":
+        pacientes = get_pacientes()
+        context = {
+            'pacientes_list': pacientes
+        }
+        return render(request, 'Paciente/pacientes.html', context)
+    else:
+        return HttpResponse("Unauthorized User")
 
 def pacientes_create(request):
     if request.method == 'POST':
