@@ -1,7 +1,7 @@
 from django.shortcuts import render
 
 from paciente.forms import PacienteForm
-from paciente.logic.logic_paciente import create_paciente, get_pacientes
+from paciente.logic.logic_paciente import create_paciente, get_pacientes, get_paciente_por_cedula
 
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
@@ -20,6 +20,15 @@ def pacientes_list(request):
         return render(request, 'Paciente/pacientes.html', context)
     else:
         return HttpResponse("Unauthorized User")
+    
+@login_required
+def paciente_unico(request, cedula=0):
+    paciente = get_paciente_por_cedula(cedula)
+    context = {
+            'pacientes_list': paciente
+        }
+    return render(request, 'Paciente/pacientes.html', context)
+
 
 def pacientes_create(request):
     if request.method == 'POST':
