@@ -7,6 +7,7 @@ from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from epilepsia2.auth0backend import getRole
+from django.contrib.auth.decorators import login_required
 
 @login_required
 def pacientes_list(request):
