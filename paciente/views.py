@@ -22,7 +22,7 @@ def pacientes_list(request):
         return HttpResponse("Unauthorized User")
     
 @login_required
-def paciente_unico(request, cedula=0):
+def paciente_unico(request, cedula):
     paciente = get_paciente_por_cedula(cedula)
     context = {
             'pacientes_list': paciente
