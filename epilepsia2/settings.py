@@ -81,11 +81,11 @@ WSGI_APPLICATION = 'epilepsia2.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'epilepsiabd2',
-        'USER': 'acer',
-        'PASSWORD': 'lucas2003',
+        'NAME': 'examenes_db',
+        'USER': 'examanes_user',
+        'PASSWORD': 'isis2503',
         'HOST': '10.128.0.2',
-        'PORT': ''
+        'PORT': '5432'
     }
 }
 
